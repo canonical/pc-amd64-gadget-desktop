@@ -84,10 +84,10 @@ connections:
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:snapd-control
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:system-observe
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:shell-config-files
+    slot: system:system-files
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:time-control
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:timeserver-control
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:timezone-control
-    slot: system:system-files
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:upower-observe
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:network-manager
     slot: RmBXKl6HO6YOC2DE4G2q1JzWImC04EUy:service
