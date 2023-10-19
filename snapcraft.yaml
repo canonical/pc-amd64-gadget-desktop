@@ -1,5 +1,5 @@
 name: pc-desktop
-version: '22-0.3'
+version: '22-0.4'
 type: gadget
 build-base: core22
 base: core22-desktop
