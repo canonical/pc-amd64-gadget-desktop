@@ -62,6 +62,7 @@ defaults:
     experimental.user-daemons: true
     experimental.dbus-activation: true
     refresh.retain: 2
+    swap.size: 4G
 
 # Connect ubuntu-desktop-session
 connections:
