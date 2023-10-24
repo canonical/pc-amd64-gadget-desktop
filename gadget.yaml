@@ -63,6 +63,7 @@ defaults:
     experimental.dbus-activation: true
     refresh.retain: 2
     service.ssh.listen-address: 127.0.0.1
+    swap.size: 4G
 
 # Connect ubuntu-desktop-session
 connections:
