@@ -64,6 +64,8 @@ defaults:
     refresh.retain: 2
     service.ssh.listen-address: 127.0.0.1
     swap.size: 4G
+  RmBXKl6HO6YOC2DE4G2q1JzWImC04EUy:
+    connectivity.uri: http://connectivity-check.ubuntu.com
 
 # Connect ubuntu-desktop-session
 connections:
