@@ -106,3 +106,4 @@ connections:
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:bluetooth-control
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:cups-control
     slot: m1eQacDdXCthEwWQrESei3Zao3d5gfJF:cups-control
+  - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:systemd-user-control
