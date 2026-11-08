@@ -9,6 +9,7 @@ confinement: strict
 grade: stable
 platforms:
   amd64:
+  arm64:
 icon: icon.png
 
 hooks:

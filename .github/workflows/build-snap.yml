@@ -11,7 +11,18 @@ permissions:
 
 jobs:
   snap:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-latest
+            suffix: ""
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+            suffix: "-arm64"
+    name: snap (${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
       - uses: snapcore/action-build@v1
@@ -19,7 +30,7 @@ jobs:
         with:
           snapcraft-channel: edge
       - name: Normalize snap filename
-        run: cp "${{ steps.snapcraft.outputs.snap }}" pc-desktop.snap
+        run: cp "${{ steps.snapcraft.outputs.snap }}" "pc-desktop${{ matrix.suffix }}.snap"
       - name: Publish to desktop-26-latest release
         if: github.event_name != 'pull_request'
         env:
@@ -27,12 +38,12 @@ jobs:
         run: |
           gh release view desktop-26-latest -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
             || gh release create desktop-26-latest -R "$GITHUB_REPOSITORY" \
-                 --title "desktop/26 latest snap" \
-                 --notes "Rolling latest desktop/26 snap build; assets are replaced on every green build."
-          gh release upload desktop-26-latest pc-desktop.snap -R "$GITHUB_REPOSITORY" --clobber
+                 --title "desktop/26 latest snap build" \
+                 --notes "Rolling latest desktop/26 snap build; assets are replaced on every green build. pc-desktop.snap is amd64, pc-desktop-arm64.snap is arm64."
+          gh release upload desktop-26-latest "pc-desktop${{ matrix.suffix }}.snap" -R "$GITHUB_REPOSITORY" --clobber
       - uses: actions/upload-artifact@v4
         with:
-          name: snap
-          path: pc-desktop.snap
+          name: snap${{ matrix.suffix }}
+          path: "pc-desktop${{ matrix.suffix }}.snap"
           compression-level: 0
           retention-days: 14
