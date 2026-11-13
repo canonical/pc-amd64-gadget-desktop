@@ -26,8 +26,16 @@ volumes:
         filesystem: vfat
         # UEFI will boot the ESP partition by default first
         type: C12A7328-F81F-11D2-BA4B-00A0C93EC93B
-        # Size of around two seeds to allow for remodeling
-        size: 7000M
+        # Size of around two seeds to allow for remodeling. The Core
+        # Desktop seed content measures 2.34 GiB (amd64 GNOME: 1.6G of
+        # shared snaps + 649M of per-system snaps + EFI), so 5000M
+        # holds a worst-case remodel that duplicates the full seed
+        # (4.68 GiB) with slack; 7000M was sized before the content was
+        # measured. The build-time image carries only BIOS Boot +
+        # ubuntu-seed (ubuntu-boot/save/data are created on first boot
+        # and ubuntu-data is extended to fill the disk), so this
+        # declaration directly sets the minimum image size.
+        size: 5000M
         update:
           edition: 3
         content:
@@ -108,3 +116,4 @@ connections:
     slot: m1eQacDdXCthEwWQrESei3Zao3d5gfJF:cups-control
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:systemd-user-control
   - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:fuse-device
+  - plug: LVkazk0JLrL0ivuHRlv3wp3bK1nAgwtN:desktop-legacy
