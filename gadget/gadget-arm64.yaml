@@ -12,8 +12,11 @@ volumes:
         # Size of around two seeds to allow for remodeling. Matches the
         # amd64 gadget: the Core Desktop thin seed set (base, kernel,
         # snapd, gadget, session, content and provider snaps) does not
-        # fit the upstream vanilla 1200M seed.
-        size: 7000M
+        # fit the upstream vanilla 1200M seed. 5000M holds the measured
+        # 2.34 GiB seed content plus a worst-case remodel that
+        # duplicates the full seed (4.68 GiB); 7000M was sized before
+        # the content was measured.
+        size: 5000M
         update:
           edition: 3
         content:
